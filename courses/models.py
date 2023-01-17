@@ -24,7 +24,7 @@ class Course(Base):
 
 
 class Assessment(Base):
-    id_course = models.ForeignKey(Course, related_name='assessments', on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, related_name='assessments', on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     email = models.EmailField()
     comment = models.TextField(blank=True, default='')
@@ -33,8 +33,8 @@ class Assessment(Base):
     class Meta:
         verbose_name: 'Assessment'
         verbose_name_plural: 'Assessments'
-        unique_together = ['email', 'id_course']
+        unique_together = ['email', 'course']
         ordering = ['id']
 
     def __str__(self):
-        return f'{self.name} avaliou o curso {self.id_course} com nota {self.assessment}'
+        return f'{self.name} avaliou o curso {self.course} com nota {self.assessment}'
