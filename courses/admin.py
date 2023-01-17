@@ -9,5 +9,5 @@ class CourseAdmin(admin.ModelAdmin):
 
 @admin.register(Assessment)
 class AssessmentAdmin(admin.ModelAdmin):
-    list_display = ('id_course', 'name', 'email', 'assessment', 'create', 'update', 'active')
+    list_display = ('course', 'name', 'email', 'assessment', 'create', 'update', 'active')
 
