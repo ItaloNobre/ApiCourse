@@ -11,7 +11,7 @@ class AssessmentSerializer(serializers.ModelSerializer):
         model = Assessment
         fields = (
             'id',
-            'id_course',
+            'course',
             'name',
             'email',
             'comment',
@@ -28,6 +28,9 @@ class AssessmentSerializer(serializers.ModelSerializer):
 
 class CourseSerializer(serializers.ModelSerializer):
 
+    assessments = AssessmentSerializer(many=True, read_only=True)
+    media_assessments = serializers.SerializerMethodField()
+
     class Meta:
 
         model = Course
@@ -38,7 +41,7 @@ class CourseSerializer(serializers.ModelSerializer):
             'create',
             'active',
             'assessments',
-            #'get_media_assessments'
+            'media_assessments'
         )
 
     def get_media_assessments(self, obj):
@@ -47,4 +50,3 @@ class CourseSerializer(serializers.ModelSerializer):
         if media is None:
             return 0
         return (media * 2) / 2
-
