@@ -19,5 +19,5 @@ from courses.urls import router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls))
+    path('api/v1/', include(router.urls))
 ]
