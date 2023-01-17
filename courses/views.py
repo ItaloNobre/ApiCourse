@@ -2,8 +2,8 @@ from rest_framework import viewsets, permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from .models import Course, Assessment
 from .serializers import CourseSerializer, AssessmentSerializer
+from .models import Course, Assessment
 
 
 class CourseViewSet(viewsets.ModelViewSet):
