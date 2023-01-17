@@ -8,6 +8,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
+Token 80ab360d3632ee23c24d64cf8abf4363ab80c3aa
 """
 import os
 from pathlib import Path
@@ -40,7 +41,7 @@ INSTALLED_APPS = [
 
     'django_filters',
     'rest_framework',
-    #'rest_framework.authtoken',
+    'rest_framework.authtoken',
 
     'courses',
 
@@ -131,3 +132,19 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 2,
+    'DEFAULT_THROTTLE_CLASSES': [
+            'rest_framework.throttling.AnonRateThrottle',
+            'rest_framework.throttling.UserRateThrottle'
+        ],
+        'DEFAULT_THROTTLE_RATES': {
+            'anon': '5/minute', #second, minute, day, month, year
+            'user': '10/minute'
+        }
+}
