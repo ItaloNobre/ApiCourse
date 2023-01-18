@@ -144,7 +144,8 @@ REST_FRAMEWORK = {
             'rest_framework.throttling.UserRateThrottle'
         ],
         'DEFAULT_THROTTLE_RATES': {
-            'anon': '5/minute', #second, minute, day, month, year
-            'user': '10/minute'
-        }
+            'anon': '15/minute', #second, minute, day, month, year
+            'user': '30/minute'
+        },
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
